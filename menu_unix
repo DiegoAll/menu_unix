@@ -1,0 +1,606 @@
+MENU PRINCIPAL
+echo " MENU PRINCIPAL"
+while :
+do
+echo "(1)Menu comandos basicos"
+echo "(2)Menu Carpetas"
+echo "(3)Menu Archivos"
+echo "(4)Menu Usuarios"
+
+echo "(9)Terminar"
+echo "            Digite el numero de la  opcion que desea y oprima enter "
+read opcion
+case $opcion in
+1)sh comandos; exit;;
+
+2)sh carpetas; exit ;;
+3)sh archivos; exit;;
+4)sh usuarios; exit ;;
+9)exit;;
+esac
+sleep 2
+date
+done
+
+
+MENU COMANDOS BASICOS
+
+while :
+do
+echo "MENU COMANDOS BASICOS"
+echo " "
+echo "1. MOSTRAR FECHA Y HORA"
+echo "2. CAMBIAR CONTRASENA"
+echo "3. MOSTRAR ESPACIO DE DISCO UTILIZADO"
+echo "4. MOSTRAR ESPACIO LIBRE EN DISCO"
+echo "5. MOSTRAR USUARIOS CONECTADOS"
+echo "9. REGRESAR"
+echo "Digite el numero de la  opcion que desea y oprima enter"
+read opcion1
+case $opcion1 in
+
+1) clear; date; sleep 4; clear;;
+2)  passwd;;
+3)  df -h|cut -c 1-11,29-32; sleep 4; clear;;
+4)  df -h|cut -c 1-11,34-39;sleep 4; clear;;
+5)  who |cut -c 1-8
+9) sh prueba1;;
+esac
+done
+
+
+
+MENU CARPETAS
+while :
+do
+echo "MENU CARPETAS"
+echo " "
+echo "1. MOSTRAR CONTENIDO DE LA CARPETA ACTUAL"
+echo "2. CREAR CARPETA"
+echo "3. BORRAR CARPETA"
+echo "4. CAMBIAR NOMBRE DE UNA CARPETA"
+echo "9. REGRESAR"
+echo "Digite el numero de la  opcion que desea y oprima enter"
+read opcion2
+case $opcion2 in
+
+1) ls -R
+2) sh creardirectorio
+3) sh borrardirectorio
+4) sh cambiarnombre
+9) sh prueba1;;
+esac
+done
+
+MENU ARCHIVOS
+
+while :
+do
+echo "MENU ARCHIVOS"
+echo " "
+echo "1. MOSTRAR CONTENIDO DE UN ARCHIVO"
+echo "2. COPIAR UN ARCHIVO"
+echo "3. CAMBIAR NOMBRE A UN ARCHIVO"
+echo "4. ASIGNAR PERMISOS A UN ARCHIVO"
+echo "5. MODIFICAR PERMISOS A UN ARCHIVO"
+echo "6. ELIMINAR UN ARCHIVO"
+echo "9. REGRESAR"
+echo "Digite el numero de la  opcion que desea y oprima enter"
+read opcion3
+case $opcion3 in
+
+1) sh mostrararchivo
+2) sh copiararchivo
+3) sh cambiarnombre
+4) 
+5)
+6) sh borrararchivo
+9) sh prueba1;;
+
+MENU USUARIOS
+
+while :
+do
+echo "MENU USUARIOS"
+echo " "
+echo "1. MOSTRAR USUARIOS CONECTADOS"
+echo "2. MOSTRAR NUMERO DE USUARIOS COINECTADOS"
+echo "3. BUSCAR USUARIO CONECTADO"
+echo "4. ENVIAR MENSAJE A USUARIO"
+echo "9. REGRESAR"
+echo "Digite el numero de la  opcion que desea y oprima enter"
+read opcion3
+case $opcion3 in
+
+1)
+2)
+3)
+4)
+5)
+6)
+9) sh prueba1;;
+
+
+
+crear directorio
+echo "ingrese nombre de directorio a crear"
+read ndir
+mkdir $ndir
+
+borrar directorio
+echo "ingrese nombre de directorio a borrar"
+read rdir
+rmdir $rdir
+
+cambiar nombre
+echo "ingrese nombre de directorio a cambiar"
+read n1
+echo "ingrese nuevo nombre de directorio "
+read n2
+mv $n1 $n2
+
+mostrar archivo
+echo "ingrese nombre de archivo a mostrar"
+read ar
+cat $ar
+
+copiar archivo
+echo "ingrese nombre de archivo a COPIAR"
+read ar1
+echo "ingrese nombre de archivo a  DONDE SE VA COPIAR"
+read ar2
+cp $ar1 $ar2
+
+borrar archivo
+echo "ingrese nombre del archivo a borrar"
+read rar
+rm $rar
+
+
+echo "ingrese nombre del archivo"
+read ar
+
+
+if test -f $ar
+then
+while :
+do
+echo "seleccione una opcion"
+echo " 1. para usuarios"
+echo "2. para grupos"
+echo " 3. para otros"
+echo " 4. para usuarios y grupos"
+echo " 5. para usuarios y otros"
+echo " 6. para grupos y otros"
+echo "7. para todos"
+echo "9. para regresar"
+read opcion5
+case $opcion5 in
+
+1) clear;
+   sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod u+w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod u+r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod u+x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod u+wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod u+wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod u+rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod u+wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+
+2) clear;
+   sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod g+w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod g+r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod g+x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod g+wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod g+wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod g+rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod g+wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+3) clear;
+   sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod o+w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod o+r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod o+x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod o+wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod o+wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod o+rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod o+wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+
+4) clear;
+   sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod ug+w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod ug+r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod ug+x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod ug+wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod ug+wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod ug+rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod ug+wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+
+
+5) clear; sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod uo+w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod uo+r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod uo+x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod uo+wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod uo+wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod uo+rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod uo+wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+6) clear; sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod go+w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod go+r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod go+x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod go+wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod go+wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod go+rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod go+wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+esac
+;;
+7) clear;  sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod ugo+w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod ugo+r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod ugo+x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod ugo+wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod ugo+wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod ugo+rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod ugo+wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+esac
+;;
+9) clear; exit;;
+*) clear; echo " ingreso opcion invalida";sleep 3;clear;;
+esac
+ls -l
+done
+
+else
+ echo " el archivo no esxiste"
+fi
+
+
+----------- asignarpermiso----------------
+echo "ingrese nombre del archivo"
+read ar
+
+
+
+if test -f $ar
+then
+while :
+do
+
+echo "seleccione una opcion"
+echo " 1. para usuarios"
+echo "2. para grupos"
+echo " 3. para otros"
+echo " 4. para usuarios y grupos"
+echo " 5. para usuarios y otros"
+echo " 6. para grupos y otros"
+echo "7. para todos"
+echo "9. para regresar"
+read opcion5
+case $opcion5 in
+
+1) clear;
+   sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod u=w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod u=r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod u=x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod u=wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod u=wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod u=rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod u=wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+
+2) clear;
+   sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod g=w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod g=r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod g=x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod g=wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod g=wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod g=rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod g=wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+3) clear;
+   sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod o=w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod o=r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod o=x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod o=wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod o=wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod o=rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod o=wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+
+4) clear;
+   sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod ug=w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod ug=r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod ug=x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod ug=wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod ug=wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod ug=rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod ug=wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+
+
+5) clear; sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod uo=w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod uo=r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod uo=x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod uo=wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod uo=wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod uo=rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod uo=wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+   esac
+;;
+6) clear; sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod go=w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod go=r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod go=x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod go=wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod go=wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod go=rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod go=wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+esac
+;;
+7) clear;  sh gener;
+   read op;
+   case $op in
+   1)clear; chmod 000 $ar;echo "permiso asignado";sleep 3;clear;;
+   2)clear; chmod ugo=w $ar;echo "permiso asignado";sleep 3;clear;;
+   3)clear; chmod ugo=r $ar;echo "permiso asignado";sleep 3;clear;;
+   4)clear; chmod ugo=x $ar;echo "permiso asignado";sleep 3;clear;;
+   5)clear; chmod ugo=wr $ar;echo "permiso asignado";sleep 3;clear;;
+   6)clear; chmod ugo=wx $ar;echo "permiso asignado";sleep 3;clear;;
+   7)clear; chmod ugo=rx $ar;echo "permiso asignado";sleep 3;clear;;
+   8)clear; chmod ugo=wrx $ar;echo "permiso asignado";sleep 3;clear;;
+   9)clear;;
+   *)clear; echo " ingreso opcion no valida";sleep 3;clear;;
+esac
+;;
+9) clear; exit;;
+*) clear; echo " ingreso opcion invalida";sleep 3;clear;;
+esac
+ls -l
+done
+
+else
+ echo " el archivo no esxiste"
+ sleep 3
+
+
+
+fi
+
+
+
+
+
+ borrararchivo
+echo "ingrese nombre del archivo a borrar"
+read rar
+if test -f $rar
+then
+rm $rar
+echo " archivo borrado"
+sleep 3
+else
+echo " el archivo no existe"
+sleep 3
+fi
+
+
+
+ borrardirectorio
+echo "ingrese nombre de directorio a borrar"
+read rdir
+if test -d $rdir
+then
+rmdir $rdir
+if test -d $rdir
+then
+echo "no se pudo borrar el directorio"
+else
+echo "directorio eliminado"
+fi
+else
+echo "el directorio no existe"
+
+fi
+sleep 3
+
+
+
+ cambiarnombre
+echo "ingrese nombre de directorio a cambiar"
+read n1
+if test -d $n1
+then
+echo "ingrese nuevo nombre de directorio "
+read n2
+mv $n1 $n2
+echo " operacion exitosa"
+else
+echo "directorio no existe"
+fi
+sleep 3
+
+
+
+cambiarnombrear
+ 
+echo "ingrese nombre de archivo a cambiar"
+read a1
+if test -f $a1
+then
+echo "ingrese nuevo nombre de archivo "
+read a2
+mv $a1 $a2
+echo "nombre cambiado exitosamente"
+sleep 3
+else
+echo "archivo no existe"
+sleep 3
+fi
+
+
+
+ copiararchivo
+echo " ingrese nombre de archivo a copiar"
+read a1
+if test -f $a1
+then
+echo "ingrese nombre para la copia"
+read a2
+if test -f $a2
+then
+echo "existe un archivo q ya tiene este nombre desea sobreescribirlo"
+echo "1.si"
+echo "2.no"
+read op1
+case $op1 in
+1)clear; cp $a1 $a2; echo "archivo copiado"; sleep 5; clear;exit;;
+2)clear;exit;;
+3)clear;echo "digito opcion invalida";sleep 4;exit;;
+esac
+else
+cp $a1 $a2
+echo "archivo copiado"
+sleep 4
+fi
+else
+echo "el archivo no existe"
+exit
+fi
+
+
+
+
+
+ creardirectorio
+echo "ingrese nombre de directorio a crear"
+read ndir
+
+if test -d $ndir
+then
+echo "ya existe un directorio con ese nombre"
+sleep 3
+else
+mkdir $ndir
+echo " carpeta creada"
+sleep 3
+fi
+
+
+
+
+
+gener
+echo "1. sin acceso"
+echo "2. escritura"
+echo "3. lectura"
+echo "4. ejecucion"
+echo "5. escritura y lectura"
+echo "6. escritura y ejecucion"
+echo "7. lectura y ejecucion"
+echo " 8. todos"
+echo " 9. salir"
+
+
+
+ mensaje
+echo " ingrese nombre de usuario a quien va a mandar el mensaje"
+
+
+
+read nom
+if test $(who| grep $nom | wc -l) -gt 0
+then
+echo " el usuario esta conectado y puede enviarle un mensaje"
+echo " para salir presione Ctrl + D"
+echo " escriba el mensaje"
+write $nom
+sleep 3
+else
+echo " el usuario esta desconectado o no existe"
+sleep 3
+fi
